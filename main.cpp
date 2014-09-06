@@ -77,13 +77,21 @@ int main( int argc, char** argv )
 		M1->x += (abs((M1->x - VP->x)/2));
 		M2->x += (abs((M2->x - NP->x)/2));
 
-		// koeff naklona priamoi
-		float koeff = (M2->y - M1->y)/(M2->x - M1->x);
-
-		M->x = M1->x + (abs(M1->x - M2->x)/2);
-		M->y = M1->y + (abs(M1->y - M2->y)/2);
-		int b = M->y;
-		cvLine( frame, cvPoint(M->x=100, M->y = (1/koeff)*(M->x)+b), cvPoint(M->x = 400, M->y = (1/koeff)*(M->x)+b), CV_RGB(100,200,100), 3, 8);
+		if ((M2->x - M1->x) == 0)
+		{
+			M->y = M1->y;
+			cvLine( src, cvPoint(M->x=100, M->y ), cvPoint(M->x = 500, M->y), CV_RGB(100,200,100), 3, 8);
+		}
+		else
+		{
+			// koeff naklona priamoi
+			float koeff = (M2->y - M1->y)/(M2->x - M1->x);
+	
+			M->x = M1->x+(abs(M1->x - M2->x)/2);
+			M->y = M1->y+(abs(M1->y - M2->y)/2);
+			int b = M->y;
+			cvLine( src, cvPoint(M->x=100, M->y = (1/koeff)*(M->x)+b), cvPoint(M->x = 500, M->y = (1/koeff)*(M->x)+b), CV_RGB(100,200,100), 3, 8);
+		}
 
 		cvResetImageROI(image);
 
