@@ -54,7 +54,7 @@ int main( int argc, char** argv )
 		cvInRangeS(gray, cvScalar(40), cvScalar(150), bin);
 
 		CvMemStorage* storage = cvCreateMemStorage(0);
-    	CvSeq* contours=0;
+    		CvSeq* contours=0;
 
 		// naxodim kontyri
 		int contoursCont = cvFindContours( bin, storage, &contours, sizeof(CvContour), CV_RETR_LIST, CV_CHAIN_APPROX_NONE ,cvPoint(0,0));
